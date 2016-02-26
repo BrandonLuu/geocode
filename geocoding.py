@@ -1,13 +1,35 @@
+"""
+Author: Brandon Luu
+Date: 2/22/16
+Description: This script reads a file with newline separated addresses and into its lat/long
+position and then writes all of these values into a CSV output file.
+"""
 import googlemaps
 
-API_KEY = "AIzaSyC21X6viw2CyUsxj_IK5b0G7jhB0nmSd6E"
+API_KEY = <API_KEY_GOES_HERE>
 
 gmaps = googlemaps.Client(key=API_KEY)
 
-# Geocoding and address
-#geocode_result = gmaps.geocode('1600 Amphitheatre Parkway, Mountain View, CA')
-#geocode_result = gmaps.geocode("American Canyon Walmart Supercenter 7011 Main Street")
-#geocode_result = gmaps.geocode("7011 Main Street American Canyon CA")
-geocode_result = gmaps.geocode("800 Commerce Ave, Atwater, CA"
-                               "")
-print(geocode_result[0]['geometry']['location'])
+# Input/Output file names
+input_file = "CA_Walmart_Address.csv"
+output_file = "CA_Walmart_GPS.csv"
+
+# Open files
+in_fd = open(input_file, 'r')
+out_fd = open(output_file, 'w')
+
+# Find GPS of address
+for line in in_fd:
+    geocode_result = gmaps.geocode(line)
+    Gps_lat = geocode_result[0]['geometry']['location']['lat']
+    Gps_lng = geocode_result[0]['geometry']['location']['lng']
+
+    # Write Address and GPS in CSV
+    address = line[0:len(line)-1] # Remove newline
+    Gps_string = '"%s",%s,%s\n' % (address, Gps_lat, Gps_lng)
+    # print(Gps_string)
+    out_fd.write(Gps_string)
+
+# Close Files
+in_fd.close()
+out_fd.close()

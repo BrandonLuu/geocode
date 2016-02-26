@@ -31,7 +31,7 @@ for line in in_fd:
             street = " ".join(map(str, street))
 
     # Combine address info into one postal string
-    address = "%s, %s, CA\n" % (street, city)
+    address = '%s, %s, CA\n' % (street, city)
     print("Address: %s" % address)
 
     """
