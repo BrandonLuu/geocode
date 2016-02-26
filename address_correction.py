@@ -6,7 +6,7 @@ and then writes a correct postal address style format into another file.
 """
 # Input/Output file names
 input_file = "CA_Walmart.csv"
-output_file = "CA_Walmart_postal_address.csv"
+output_file = "CA_Walmart_Address.csv"
 
 
 # Open files
