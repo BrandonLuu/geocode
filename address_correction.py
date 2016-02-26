@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """
 Author: Brandon Luu
 Date: 2/22/16
